@@ -1,21 +1,21 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        int size =0;
-        for(int i = 0 ; i < s.length() ; i++){
-            unordered_set<char> mp;
-            for(int j = i; j<s.length() ; j++){
-               if(mp.find(s[j]) != mp.end() ){
-                break;
-               }
-                mp.insert(s[j]);
+       int l = 0, r = 0, len, maxlen = 0;
+        vector<int> hash(256, -1);  
+        int n = s.length();
+
+        while(r<n){
+            if(hash[s[r]] != -1){
+                if(hash[s[r]] >=l){
+                    l = hash[s[r]]+1;
+                }
             }
-            size = max(size, (int)mp.size());
+            len=r-l+1;
+            maxlen = max(len,maxlen);
+            hash[s[r]] = r;
+            r++;
         }
-        // for(auto &it : mp){
-        //      cout<<(char)it<< " ";
-        // }
-       
-        return size;
+        return maxlen;
     }
-};   
+};
