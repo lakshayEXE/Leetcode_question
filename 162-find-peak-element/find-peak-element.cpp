@@ -11,7 +11,7 @@ public:
             //     return mid;
             // }
             if( (mid-1 >= 0) && nums[mid] > nums[mid-1]  &&
-             (mid+1 >=0) && nums[mid] > nums[mid+1] ){
+                (mid+1 <= nums.size()-1) && nums[mid] > nums[mid+1] ){
                 return mid;
             }else if(nums[mid] < nums[mid+1] ){
                 start = mid+1;
